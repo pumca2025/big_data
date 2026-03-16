@@ -1,0 +1,13 @@
+start-all.sh
+gedit marketpricedata.txt
+gedit minMaxMapper.py
+gedit minMaxReducer.py
+hdfs dfsadmin -safemode leave
+hdfs dfs -put marketpricedata.txt /home/hari
+hdfs dfs -put minMaxMapper.py /home/hari
+hdfs dfs -put minMaxReducer.py /home/hari
+hdfs dfs -ls /home/hari
+hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-*.jar -file minMaxMapper.py -mapper "python minMaxMapper.py" -file minMaxReducer.py -reducer "python minMaxReducer.py" -input /home/hari/marketpricedata.txt -output /home/hari/result
+hdfs dfs -ls /home/hari/result
+hdfs dfs -cat /home/hari/result/part-00000
+stop-all.sh

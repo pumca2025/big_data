@@ -1,0 +1,6 @@
+1001,Kallakurichi,MCA,Developer
+1002,ChinnaSalem,MBA,HR
+1003,Trichy,MCOM,Sales
+1004,Salem,MCOM,Ad
+1005,Attur,MA,Marketing
+1006,Karur,MSC,DE

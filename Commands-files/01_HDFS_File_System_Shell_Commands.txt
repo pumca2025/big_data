@@ -1,0 +1,13 @@
+start-all.sh
+jps
+hdfs dfs -ls /home
+hdfs dfsadmin -safemode leave
+hdfs dfs -rmr /home/rr
+hdfs dfs -mkdir /home/hari
+hdfs dfs -ls /home
+hdfs dfs -put data.txt /home/hari
+hdfs dfs -ls /home/hari
+hdfs dfs -cat /home/hari/data.txt
+hdfs dfs -get /home/hari/data.txt /home/rr
+hdfs dfs -du /home/hari
+stop-all.sh

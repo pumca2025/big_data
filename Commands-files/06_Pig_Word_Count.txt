@@ -1,0 +1,7 @@
+start-all.sh
+gedit wCount.pig
+gedit bigdata.txt
+hdfs dfsadmin -safemode leave
+hdfs dfs -put bigdata.txt /home/hari
+pig wCount.pig
+stop-all.sh

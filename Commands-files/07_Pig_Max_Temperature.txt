@@ -1,0 +1,7 @@
+start-all.sh
+hdfs dfsadmin -safemode leave
+gedit minMax.txt
+gedit minMax.pig
+hdfs dfs -put minMax.txt /home/hari
+pig minMax.pig
+stop-all.sh

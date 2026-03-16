@@ -1,0 +1,12 @@
+start-all.sh
+gedit bigdata.txt
+gedit wordMapper.py
+gedit wordReducer.py
+hdfs dfsadmin -safemode leave
+hdfs dfs -put wordMapper.py /home/hari
+hdfs dfs -put wordReducer.py /home/hari
+hdfs dfs -put bigdata.txt /home/hari
+hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-*.jar -file wordMapper.py -mapper "python wordMapper.py" -file wordReducer.py -reducer "python wordReducer.py" -input /home/hari/bigdata.txt -output /home/hari/result
+hdfs dfs -ls /home/hari/result
+hdfs dfs -cat /home/hari/result/part-00000
+stop-all.sh

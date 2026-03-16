@@ -1,0 +1,17 @@
+start-all.sh
+gedit emp_det.txt
+gedit emp_det2.txt
+gedit udf.py
+hdfs dfsadmin -safemode leave
+hdfs dfs -put emp_det1.txt /home/hari
+pig
+REGISTER 'udf.py' USING jython as pyudf
+LOAD '/home/hari/emp_det.txt'
+JOIN
+SPLIT
+GROUP
+AVG
+COGROUP
+TOMAP
+QUIT
+stop-all.sh

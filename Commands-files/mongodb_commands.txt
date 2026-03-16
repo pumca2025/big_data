@@ -1,0 +1,30 @@
+use student
+show dbs
+db.createCollection('mca')
+
+db.mca.insertOne({'_id':1,'Name':'Hari ','Roll No':'MCA001','Mark 1':78,'Mark 2':89,'Total':167})
+
+db.mca.insertMany([
+{'_id':2,'Name':'Muthees','Roll No':'MCA002','Mark 1':67,'Mark 2':78,'Total':145},
+{'_id':3,'Name':'Tamil','Roll No':'MCA003','Mark 1':70,'Mark 2':88,'Total':158},
+{'_id':4,'Name':'Saran','Roll No':'MCA004','Mark 1':80,'Mark 2':60,'Total':140},
+{'_id':5,'Name':'Sabari','Roll No':'MCA005','Mark 1':70,'Mark 2':77,'Total':147},
+{'_id':6,'Name':'Selvi','Roll No':'MCA006','Mark 1':80,'Mark 2':50,'Total':130},
+{'_id':7,'Name':'Gayu','Roll No':'MCA008','Mark 1':90,'Mark 2':70,'Total':160}
+])
+
+db.mca.updateOne({'_id':7},{$set:{'Roll No':'MCA007'}})
+db.mca.updateMany({},{$set:{'Batch':2024}})
+db.mca.deleteOne({'_id':6})
+
+db.mca.find()
+
+db.mca.find({Name:'Hari '})
+db.mca.find({$or:[{Name:'Muthees'},{Total:64}]})
+db.mca.find({Name:{$in:['Tamil','Hari ']}})
+db.mca.find({Total:{$gt:165}})
+db.mca.find({Total:{$lt:140}})
+db.mca.find({Total:{$eq:160}})
+db.mca.find({Name:{$nin:['Saran','Sabari','Selvi','Hari ', 'Gayu']}})
+
+db.dropDatabase()

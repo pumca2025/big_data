@@ -1,0 +1,15 @@
+start-all.sh
+gedit emp_det.txt
+hdfs dfsadmin -safemode leave
+hdfs dfs -put emp_det.txt /home/hari
+hdfs dfs -ls /home/hari
+pig
+LOAD '/home/hari/emp_det.txt'
+LIMIT
+FILTER
+DESCRIBE
+GROUP
+FOREACH
+DISTINCT
+QUIT
+stop-all.sh
