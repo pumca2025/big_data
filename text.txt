@@ -1,0 +1,74 @@
+Reducer
+
+import sys
+
+current_year = None
+values = []
+
+for line in sys.stdin:
+    year, value = line.strip().split("\t")
+    value = int(value)
+
+    if current_year == year:
+        values.append(value)
+    else:
+        if current_year:
+            print(current_year, max(values), min(values))
+        current_year = year
+        values = [value]
+
+# Last record
+if current_year:
+    print(current_year, max(values), min(values))
+
+
+
+Reducer
+
+import sys
+
+current_word = None
+count = 0
+
+for line in sys.stdin:
+    word, value = line.strip().split("\t")
+    value = int(value)
+
+    if current_word == word:
+        count += value
+    else:
+        if current_word:
+            print(current_word, count)
+        current_word = word
+        count = value
+
+# Last word
+if current_word:
+    print(current_word, count)
+
+
+
+Pig Latin – Word Count
+
+
+
+A = LOAD 'input.txt' AS (line:chararray);
+
+B = FOREACH A GENERATE FLATTEN(TOKENIZE(line)) AS word;
+
+C = GROUP B BY word;
+
+D = FOREACH C GENERATE group, COUNT(B);
+
+DUMP D;
+
+
+Pig Latin – Min Max
+
+A = LOAD 'minMax.txt' USING PigStorage(',') AS (year:int, temp:int);
+
+B = GROUP A BY year;
+
+C = FOREACH B GENERATE group AS year, MAX(A.temp), MIN(A.temp);
+
+DUMP C;
